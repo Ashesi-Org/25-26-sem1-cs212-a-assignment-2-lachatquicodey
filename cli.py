@@ -13,6 +13,7 @@ def display_welcome():
     """Display welcome message to the user."""
     print("=" * 50)
     print("   Welcome to Python CLI File Manager!")
+    print()
     print("=" * 50)
     print("This is a simple file manager to demonstrate")
     print("Python fundamentals: variables, expressions,")
@@ -28,8 +29,10 @@ def get_user_choice():
     print("3. info - Show program information")
     print("4. quit - Exit the program")
     print()
+    
 
     choice = input("Enter your choice (help/calc/info/quit): ").strip().lower()
+    return choice
     # TODO: Add code to return the choice
 
 
@@ -78,10 +81,10 @@ def display_info():
 def process_user_command(
     choice,
     running,
-    show_goodbye,
-    goodbye_message,
-    invalid_choice_prefix,
-    valid_commands,
+    show_goodbye=True,
+    goodbye_message="Thank you for using Python CLI File Manager!",
+    invalid_choice_prefix="Invalid choice",
+    valid_commands="help, calc, info, quit",
 ):
     """
     Process a user command and return the updated running state.
@@ -103,7 +106,8 @@ def process_user_command(
     if choice == "help":
         display_help()
     elif choice == "calc":
-        get_and_display_file_size()
+        filename = input("enter filename and calculate size: ")
+        get_and_display_file_size(filename)
     elif choice == "info":
         display_info()
     elif choice == "quit":
@@ -120,11 +124,11 @@ def process_user_command(
 
 def main():
     """Main program loop."""
-    # Display welcome message
-    # TODO: Call the function to display the welcome message
+    print("Welcome to the Python CLI program!") # Display welcome message
+    display_welcome() # TODO: Call the function to display the welcome message
 
     # Main command loop
-    # TODO: Initialize a variable to control the loop. Hint set running = True
+    running=True # TODO: Initialize a variable to control the loop. Hint set running = True
     while running:
         try:
             choice = get_user_choice()
